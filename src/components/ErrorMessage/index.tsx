@@ -4,13 +4,12 @@ import styles from './styles';
 
 interface ErrorMessageProps {
   style?: object,
-  message: string,
-  show: boolean,
+  errorState: any,
 }
 
-const ErrorMessage = ({ style, message, show }: ErrorMessageProps) => (
+const ErrorMessage = ({ style, errorState }: ErrorMessageProps) => (
   <View style={style}>
-    { show && <Text style={styles.message}>{message}</Text> }
+    { errorState.error && <Text style={styles.message}>{errorState.message}</Text> }
   </View>
 );
 
