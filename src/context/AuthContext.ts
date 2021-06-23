@@ -12,19 +12,26 @@ export interface StateType {
   appIsReady: boolean
 }
 
+const BEFORE_SIGNIN = 'before_signin';
+const SIGNIN = 'signin';
+const SIGNIN_ERROR = 'signin_error';
+const RESET_ERROR = 'reset_error';
+const SIGNOUT = 'signout';
+const RENDER = 'render';
+
 const authReducer = (state: StateType, actions): StateType => {
   switch (actions.type) {
-    case 'beforeSignin':
+    case BEFORE_SIGNIN:
       return { ...state, error: false, errorMessage: '', loading: true };
-    case 'signin':
+    case SIGNIN:
       return { ...state, loading: false, alenviToken: actions.payload };
-    case 'signinError':
+    case SIGNIN_ERROR:
       return { ...state, loading: false, error: true, errorMessage: actions.payload };
-    case 'resetError':
+    case RESET_ERROR:
       return { ...state, loading: false, error: false, errorMessage: '' };
-    case 'signout':
+    case SIGNOUT:
       return { ...state, alenviToken: null, loading: false, error: false, errorMessage: '' };
-    case 'render':
+    case RENDER:
       return { ...state, appIsReady: true };
     default:
       return state;
